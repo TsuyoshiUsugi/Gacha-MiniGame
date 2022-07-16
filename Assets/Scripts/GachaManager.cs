@@ -63,7 +63,7 @@ public class GachaManager : MonoBehaviour
         //ƒŒƒo[‚ª‰ñ‚³‚ê‚½‚ç
         if (_leverClicked == true)
         {
-            if (_waitToPullOut.Count > 1)
+            if (_waitToPullOut.Count > 0)
             {
                 int Atari = Random.Range(0, _waitToPullOut.Count);
 

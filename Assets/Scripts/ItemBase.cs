@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 /// <summary>
 /// 排出されるアイテムのクラス
@@ -28,7 +29,11 @@ public class ItemBase : MonoBehaviour
     /// </summary>
     void ItemData()
     {
-        Ball1 ball1 = Resources.Load("Ball1") as Ball1;
-        _testText = ball1.TestString;
+        var ball1 = Resources.Load<Ball1>("Ball1");
+        if (ball1 == null)
+        {
+            Debug.Log("aaaaa");
+        }
+        _testText = ball1.TestText;
     }
 }

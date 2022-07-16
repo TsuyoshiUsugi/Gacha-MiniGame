@@ -2,13 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// ガチャの商品のコンポーネント
-/// </summary>
-[CreateAssetMenu]
 public class Ball1 : ScriptableObject
 {
-    [SerializeField] string _testText = "これはテストテキストです";
+    [SerializeField] string _testText = "これはテストてきすとです";
 
-    public string TestString { get => _testText; }
+    public string TestText { get => _testText; }
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
 }
