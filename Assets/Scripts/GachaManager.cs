@@ -4,9 +4,10 @@ using UnityEngine;
 /// <summary>
 /// ガチャのマネージャーコンポーネント
 /// ガチャのシーンになった時上からガチャを生成する
-/// 排出されるガチャはガチャ下部のバーに当たっているものからランダムで選ばれる
+/// leverオブジェクトがクリックされるとガチャがまわる
+/// 排出されるガチャはガチャ下部のバー(UnderBarオブジェクト)に当たっているものからランダムで選ばれる
 /// </summary>
-public class GachManager : MonoBehaviour
+public class GachaManager : MonoBehaviour
 {
     /// <summary>生成するガチャのオブジェクト</summary>
     [SerializeField] GameObject _gachaBallObj;
@@ -20,15 +21,19 @@ public class GachManager : MonoBehaviour
     /// <summary>レバーが回されたらtrueになる</summary>
     [SerializeField] bool _leverClicked;
 
-    /// <summary>leverオブジェクトがtrueを返す</summary>
+    /// <summary>leverオブジェクトが使用するプロパティ</summary>
     public bool Lever { get => _leverClicked; set => _leverClicked = value; }
 
-    /// <summary>出せるオブジェクトのリスト</summary>
+    /// <summary>出せるオブジェクトのリスト
+    /// UnderBarオブジェクトが読みこんだものをいれる</summary>
     [SerializeField] List<GameObject> _waitToPullOut;
+
+    /// <summary>leverオブジェクトが使用するプロパティ</summary>
+    public void PullOutObj(GameObject ball) { _waitToPullOut.Add(ball); }
 
     void Start()
     {
-        //シーンに入ったタイミングでガチャ玉を生成する
+        //シーンに入ったタイミングでガチャ玉を設定数生成する
         for (int ballNumber = 0; ballNumber < _gachaBallLimit; ballNumber++)
         {
             InstantiateGacha();
@@ -50,25 +55,25 @@ public class GachManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ガチャを回すメソッド
+    /// _leverが回されたときのメソッド
+    /// _waitToPullOutのリストからランダムで排出する
     /// </summary>
     void PlayGacha()
     {
+        //レバーが回されたら
         if (_leverClicked == true)
         {
             int Atari = Random.Range(0, _waitToPullOut.Count);
+
+            //ここから排出したものの表示、演出
             Debug.Log(_waitToPullOut[Atari].GetComponent<Ball1>().TestString);
             Destroy(_waitToPullOut[Atari]);
+
+            //リストから排出されたものを消す
+            _waitToPullOut.RemoveAt(Atari);
         }
         _leverClicked = false;
     }
 
-    /// <summary>
-    /// ガチャ下部のバーにふれているもののスクリプトをリストに入れるメソッド
-    /// </summary>
-    void ReadTochingToBarObj()
-    {
-
-    }
 
 }

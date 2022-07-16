@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7625847096257946107}
   - component: {fileID: 7625847096257946106}
   m_Layer: 0
-  m_Name: GachaBall
+  m_Name: GachaBall1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
