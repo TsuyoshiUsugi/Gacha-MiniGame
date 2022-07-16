@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 /// レバーのコンポーネント
 /// クリックされるとレバーを回し、GachaManagerの_leverClickeをtrueにする
 /// 排出されたガチャの演出が終わるまでは回せない
+/// レバーが回ると中身が攪拌される
 /// </summary>
 public class Lever : MonoBehaviour, IPointerClickHandler
 {
@@ -30,11 +31,14 @@ public class Lever : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] GameObject _gachaManager;
 
+    [SerializeField] GameObject _mixer;
+
     void Update()
     {
         if (_doLeverRotate == true)
         {
             transform.RotateAround(transform.position, Vector3.forward, _leverSpeed);
+            _mixer.transform.Rotate(Vector3.up, _leverSpeed);
         }
     }
 

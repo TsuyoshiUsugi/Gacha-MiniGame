@@ -25,7 +25,7 @@ public class ItemBase : MonoBehaviour
     }
 
     /// <summary>
-    /// Ball1のスクリプタブルオブジェクトからデータを読み取る
+    /// Resourcesのball1の情報を読み取る
     /// </summary>
     void ItemData()
     {
