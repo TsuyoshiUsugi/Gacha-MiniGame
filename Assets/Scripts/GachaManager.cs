@@ -63,14 +63,22 @@ public class GachaManager : MonoBehaviour
         //レバーが回されたら
         if (_leverClicked == true)
         {
-            int Atari = Random.Range(0, _waitToPullOut.Count);
+            if (_waitToPullOut.Count > 1)
+            {
+                int Atari = Random.Range(0, _waitToPullOut.Count);
 
-            //ここから排出したものの表示、演出
-            Debug.Log(_waitToPullOut[Atari].GetComponent<Ball1>().TestString);
-            Destroy(_waitToPullOut[Atari]);
+                //ここから排出したものの表示、演出
+                Debug.Log(_waitToPullOut[Atari].GetComponent<ItemBase>().TestText);
+                Destroy(_waitToPullOut[Atari]);
 
-            //リストから排出されたものを消す
-            _waitToPullOut.RemoveAt(Atari);
+                //リストから排出されたものを消す
+                _waitToPullOut.RemoveAt(Atari);
+            }
+            else
+            {
+                Debug.Log("売り切れ！");
+            }
+
         }
         _leverClicked = false;
     }
